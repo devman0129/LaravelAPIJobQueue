@@ -10,11 +10,11 @@ class SubmissionController extends Controller
 {
     public function store(SubmissionRequest $request)  
     {  
-        // try {  
+        try {  
             ProcessSubmission::dispatch($request->validated());  
             return response()->json(['message' => 'Submission job dispatched successfully.'], 200);  
-        // } catch (\Exception $e) {  
-        //     return response()->json(['error' => $e->getMessage()], 500);  
-        // }     
+        } catch (\Exception $e) {  
+            return response()->json(['error' => $e->getMessage()], 500);  
+        }     
     }
 }
